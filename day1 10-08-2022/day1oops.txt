@@ -1,0 +1,158 @@
+
+import java.util.*;
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
+import java.util.Date;
+class Account{
+    private int id=0;
+    private double balance=0;
+    private double annualInterestRate=4.5;
+    private Date dateCreated;
+    
+    Account(){
+        
+    }
+    Account(int i){
+        id=i;
+        
+    }
+    
+//accessor methods
+
+    public int getId(){
+        //System.out.println("Id: "+this.id);
+        return id;
+    }
+    
+    public double getBalance(){
+        //System.out.println("Balance: "+this.balance);
+        return balance;
+    }
+    
+    public double getAnnualInterestRate(){
+        //System.out.println("Annual interest rate: "+this.annualInterestRate/100);
+        return annualInterestRate/100;
+    }
+    
+    public String getDateCreated(){
+        Date date= new Date();
+	    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy");
+	    String str = formatter.format(date);
+        //System.out.println("date: "+str);
+        return str;
+        
+    }
+   
+//methods    
+    public double getMonthlyInterestRate(){
+        double annualInterestRate=getAnnualInterestRate();
+        double MonthlyInterestRate=annualInterestRate/12;
+        return MonthlyInterestRate;
+    }
+    
+    public double getMonthlyInterest(){
+        double MonthlyInterestRate=getMonthlyInterestRate();
+        double MonthlyInterest=balance*MonthlyInterestRate;
+        //System.out.println("monthly interest rate: "+MonthlyInterest);
+        return MonthlyInterest;
+    }
+    
+    public void withdraw(double wd){
+        if(balance>wd){
+            double rem=balance-wd;
+            System.out.println("Remaining amount is :"+rem);
+        }
+        else{
+            System.out.println("No sufficient Balance");
+        }
+    }
+    
+    public void deposit(double amt){
+        double tot=balance+amt;
+        System.out.println("Total money is: "+tot);
+    }
+
+    
+//mutator methods 
+    
+    public void setId(int newId){
+        this.id=newId;
+    }
+    
+    public void setBalance(double newBalance){
+        this.balance=newBalance;
+    }
+    
+    public void setAnnualInterestRate(double newAnnualInterestRate){
+        this.annualInterestRate=newAnnualInterestRate;
+    }
+    
+}
+
+public class Main
+{
+	public static void main(String[] args) {
+	   /* //for individual 
+	   
+		Account acc = new Account(10,2000);
+		acc.setAnnualInterestRate(10);
+		
+		
+		acc.getBalance();
+		acc.getDateCreated();
+		acc.getMonthlyInterest();
+		
+		*/
+
+		Account[] acc = new Account[5];
+		for(int i=0;i<5;i++){
+		    acc[i] = new Account(i);
+		    
+		    
+		    System.out.println("Enter user Id :");
+		    Scanner sc = new Scanner(System.in);
+		    int Id= sc.nextInt();
+		    acc[i].setId(Id);
+		    
+		    
+		    System.out.println("Enter Balance :");
+		    double Bal= sc.nextDouble();
+		    acc[i].setBalance(Bal);
+		    
+		    System.out.println("1. To withdraw");
+		    System.out.println("2. To Deposit");
+		    int choice =sc.nextInt();
+   
+
+
+		    switch(choice){
+		        case 1:
+		            System.out.println("Enter amount to withdraw :");
+		            double wtd= sc.nextDouble();
+		            acc[i].withdraw(wtd);
+		 
+                    break;
+                case 2:
+                    System.out.println("Enter Amount to deposit :");
+                    double dep= sc.nextDouble();
+		            acc[i].deposit(dep);
+                    
+                    break;
+
+
+		    }
+		    
+		    
+		    
+		    System.out.println("ID is: " + acc[i].getId());
+		    System.out.println("Monthly interest is: " + acc[i].getMonthlyInterest());
+		    System.out.println("Account created on: " + acc[i].getDateCreated());
+		    
+		    
+		}
+		
+	}
+}
+
+
+

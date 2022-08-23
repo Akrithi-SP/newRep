@@ -1,0 +1,18 @@
+
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+		Scanner sc= new Scanner(System.in);
+		System.out.println("enter a strings");
+		String str1 = sc.nextLine();
+		int length1= str1.length();
+		if(str1.charAt(0)==str1.charAt(length1-2) && str1.charAt(1)==str1.charAt(length1-1)){
+		    String str = str1.substring(2, length1-2);
+		    System.out.println(""+str);
+		}
+		
+		
+	}
+}
+

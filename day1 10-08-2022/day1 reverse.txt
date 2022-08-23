@@ -1,0 +1,29 @@
+
+import java.util.Scanner;
+public class Main
+{
+	public static void main(String[] args) {
+		int rev=0;
+		int rem=0;
+		int num;
+		int n;
+		Scanner sc = new  Scanner(System.in);
+		n= sc.nextInt();
+		int[] array= new int[10];
+		for (int i=0;i<n;i++){
+		    array[i]=sc.nextInt();
+		}
+		for(int j=0;j<n;j++){
+		    num = array[j];
+		    while(num!=0){
+		        rem=num%10;
+		        rev=(rev*10)+rem;
+		        num=num/10;
+		    }		
+		    System.out.println("The reverse of given integer is"+" "+rev +"\n");
+		    rev=0;
+		}
+		}
+	}
+
+
